@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Container, Input, Button, VStack, HStack, Box, Text, Spinner } from "@chakra-ui/react";
+import { Container, Input, Button, VStack, HStack, Spinner } from "@chakra-ui/react";
+import GraphVisualization from "../components/GraphVisualization";
 import { FaSearch } from "react-icons/fa";
 
 const Index = () => {
@@ -37,25 +38,7 @@ const Index = () => {
           </Button>
         </HStack>
         {loading && <Spinner size="xl" />}
-        {graphData && (
-          <Box width="100%" height="400px" border="1px solid #ccc" borderRadius="md" p={4}>
-            <Text fontSize="xl" mb={4}>
-              Graph Data
-            </Text>
-            <Text>Nodes:</Text>
-            <ul>
-              {graphData.nodes.map((node) => (
-                <li key={node.id}>{node.label}</li>
-              ))}
-            </ul>
-            <Text>Edges:</Text>
-            <ul>
-              {graphData.edges.map((edge) => (
-                <li key={`${edge.from}-${edge.to}`}>{`From ${edge.from} to ${edge.to}`}</li>
-              ))}
-            </ul>
-          </Box>
-        )}
+        {graphData && <GraphVisualization graphData={graphData} />}
       </VStack>
     </Container>
   );
